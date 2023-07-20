@@ -35,8 +35,11 @@ with open(CSV_PATH) as csvfile:
 
 # Open a text file for writing the results
 with open("election_results.txt", "w") as file:
+    file.write(f"Election Results\n\n")
+    file.write(f"---------------------------\n\n")
     # Write the total number of votes cast to the file
     file.write(f"Total Votes: {total_num_votes}\n\n")
+    file.write(f"---------------------------\n\n")
 
     #calculate percentage of votes for each candidate
     for candidate_name, votes in candidate_votes.items():
@@ -45,6 +48,7 @@ with open("election_results.txt", "w") as file:
         print(f"{candidate_name}: {percentage:.2f}% ({votes})")
         # Write the list of candidates, percentage and number of votes to the file
         file.write(f"{candidate_name}: {percentage:.2f}% ({votes})\n\n")
+        file.write(f"---------------------------\n\n")
 
     #Calculate winner of the election based on popular vote
         if votes > winning_count:
@@ -53,6 +57,7 @@ with open("election_results.txt", "w") as file:
     print("Winner:", winning_candidate)
     #Write winner
     file.write(f"Winner: {winning_candidate}\n\n")
+    file.write(f"---------------------------\n\n")
  
     # Print a message indicating that the results have been saved to the file
 print("Election results have been saved to 'election_results.txt'.")
