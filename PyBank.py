@@ -9,6 +9,8 @@ counter = 0
 total_sum=0
 greatestincrease = 0 
 greatestdecrease = 0 
+greatestincreasedate = 0
+greatestdecreasedate = 0
 prevprofit = 0
 changes = []
 
@@ -28,8 +30,10 @@ with open(CSV_PATH) as csvfile:
             changes.append(int(row[1])-prevprofit)
         if greatestincrease < int(row[1])-prevprofit:
             greatestincrease = int(row[1])-prevprofit 
+            greatestincreasedate = 0
         if greatestdecrease > int(row[1])-prevprofit:
-            greatestdecrease = int(row[1])-prevprofit   
+            greatestdecrease = int(row[1])-prevprofit 
+            greatestdecreasedate = 0 
         prevprofit = int(row[1])             
 changetotal = 0
 for change in changes:
@@ -51,6 +55,8 @@ with open("financial_analysis.txt", "w") as file:
     file.write(f"Total: {total_sum}\n\n")
     file.write(f"Average Change: {ave_of_changes:.2f}\n\n")
     file.write(f"Greatest Increase: {greatestincrease}\n\n")
+    file.write(f"Greatest Increase Date: {greatestincreasedate}\n\n")
     file.write(f"Greatest Decrease: {greatestdecrease}\n\n")
+    file.write(f"Greatest Decrease Date: {greatestdecreasedate}\n\n")
 # Print a message indicating that the results have been saved to the file
 print("Financial Analysis have been saved to 'financial_analysis.txt'.")
